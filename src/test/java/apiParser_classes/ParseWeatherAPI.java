@@ -1,12 +1,8 @@
 package apiParser_classes;
 
 import java.util.Iterator;
-
-import org.json.JSONException;
-
-import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
-import net.sf.json.JSONSerializer;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 public class ParseWeatherAPI {
 
@@ -18,24 +14,29 @@ public class ParseWeatherAPI {
 
 		String apiURL = "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%20text%3D%22New%20York%2C%20NY%22)&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys";
 
-
 		String jsonStr = RESTfulAPIOperations.restful_GET_Operation(apiURL);
 		System.out.println("jsonStr: "+jsonStr);
 
-		JSONObject jsonObject = (JSONObject)JSONSerializer.toJSON(jsonStr);
-
+		JSONObject jsonObject = new JSONObject(jsonStr);
 		JSONObject queryObj = jsonObject.getJSONObject("query");
-		System.out.println("query Object: "+queryObj);
+		System.out.println("JSON query Object: "+queryObj);
+
+		/* 
+		 // Alternatively, using net.sf.json.JSONSerializer  .....	
+		 JSONObject jsonObject = (JSONObject)JSONSerializer.toJSON(jsonStr);
+		 JSONObject queryObj = jsonObject.getJSONObject("query");
+		 System.out.println("query Object: "+queryObj);
+		 */
 
 		System.out.println("count Numnber: "  + queryObj.getLong("count"));
 		System.out.println("created String: " + queryObj.getString("created"));
 		System.out.println("lang String: "    + queryObj.getString("lang"));
-		System.out.println("results Object: "  + queryObj.getString("results"));
+		//		System.out.println("results Object: "  + queryObj.getString("results"));
 
 		System.out.println("count Numnber: "  + queryObj.getLong("count"));
 		System.out.println("created String: " + queryObj.getString("created"));
 		System.out.println("lang String: "    + queryObj.getString("lang"));
-		System.out.println("results Object: "  + queryObj.getString("results"));
+		//		System.out.println("results Object: "  + queryObj.getString("results"));
 
 		System.out.println("channel Object: "  + queryObj.getJSONObject("results").getJSONObject("channel"));
 
@@ -77,7 +78,7 @@ public class ParseWeatherAPI {
 		System.out.println("forecast JSONArray : "  + queryObj.getJSONObject("results").getJSONObject("channel").getJSONObject("item").getJSONArray("forecast"));
 
 
-		System.out.println("forecast JSONArray size : "  + queryObj.getJSONObject("results").getJSONObject("channel").getJSONObject("item").getJSONArray("forecast").size());
+		System.out.println("forecast JSONArray size : "  + queryObj.getJSONObject("results").getJSONObject("channel").getJSONObject("item").getJSONArray("forecast").length());
 
 		System.out.println("forecast JSONArray class : "  + queryObj.getJSONObject("results").getJSONObject("channel").getJSONObject("item").getJSONArray("forecast").getClass());
 
@@ -90,7 +91,7 @@ public class ParseWeatherAPI {
 		}
 
 
-		for(int i = 0; i < forcastJSONArray.size();i++) {
+		for(int i = 0; i < forcastJSONArray.length();i++) {
 			JSONObject forcastJSONObject = forcastJSONArray.getJSONObject(i);
 			System.out.println(forcastJSONObject);
 
