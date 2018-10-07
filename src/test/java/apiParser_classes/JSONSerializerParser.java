@@ -4,6 +4,7 @@ import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import net.sf.json.JSONSerializer;
 
+//https://spring.io/understanding/JSON
 
 public class JSONSerializerParser {
 	public static final void main(String[] args) throws Exception {
