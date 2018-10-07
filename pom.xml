@@ -7,8 +7,6 @@
   <description>ParseWeatherAPI</description>
   
   <dependencies>
-  	
-		
 	
   	<!-- https://mvnrepository.com/artifact/commons-httpclient/commons-httpclient -->
 		<dependency>

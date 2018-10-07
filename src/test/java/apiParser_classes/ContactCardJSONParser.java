@@ -31,6 +31,8 @@ public class ContactCardJSONParser {
 			System.out.println(ja);
 		}
 
+		System.out.println("phoneNumbersJSONArray length = " + ccjObj.getJSONObject("contactCard").getJSONArray("phoneNumbers").length());
+
 		System.out.println("home phoneNumber String: "+ ccjObj.getJSONObject("contactCard").getJSONArray("phoneNumbers").getJSONObject(0).getString("number"));
 		System.out.println("mobile phoneNumber String: "+ ccjObj.getJSONObject("contactCard").getJSONArray("phoneNumbers").getJSONObject(1).getString("number"));
 			
@@ -41,6 +43,8 @@ public class ContactCardJSONParser {
 		for (Object ja: addressesJSONArray){
 			System.out.println(ja);
 		}
+
+		System.out.println("addressesJSONArray length = " + ccjObj.getJSONObject("contactCard").getJSONArray("addresses").length());
 
 		System.out.println("home street String: "+ ccjObj.getJSONObject("contactCard").getJSONArray("addresses").getJSONObject(0).getString("street"));
 		System.out.println("work street String: "+ ccjObj.getJSONObject("contactCard").getJSONArray("addresses").getJSONObject(1).getString("street"));
